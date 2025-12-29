@@ -15,10 +15,10 @@ java {
 }
 
 kotlin.compilerOptions {
-    @Suppress("DEPRECATION") // we can't use api version greater than 1.4 as minimal supported Gradle version uses kotlin-stdlib 1.4
-    apiVersion.set(KotlinVersion.KOTLIN_1_4)
-    @Suppress("DEPRECATION") // we can't use language version greater than 1.5 as minimal supported Gradle embeds Kotlin 1.4
-    languageVersion.set(KotlinVersion.KOTLIN_1_5)
+    @Suppress("DEPRECATION") // we can't use api version greater than 1.8 as minimal supported Gradle version uses kotlin-stdlib 1.4
+    apiVersion.set(KotlinVersion.KOTLIN_1_8)
+    @Suppress("DEPRECATION") // we can't use language version greater than 1.8 as minimal supported Gradle embeds Kotlin 1.4
+    languageVersion.set(KotlinVersion.KOTLIN_1_8)
     jvmTarget.set(JvmTarget.JVM_1_8)
     optIn.add("kotlin.RequiresOptIn")
     freeCompilerArgs.addAll(
