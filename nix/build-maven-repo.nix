@@ -134,11 +134,21 @@ let
     in
     override artifact;
 
+  # Convert a Maven SNAPSHOT timestamp version (e.g., "0.1-20240720.200737-2") to its
+  # base SNAPSHOT version directory name (e.g., "0.1-SNAPSHOT").
+  # Non-timestamp versions are returned unchanged.
+  toVersionDir =
+    version:
+    let
+      match = builtins.match "(.*)-[0-9]{8}\\.[0-9]{6}-[0-9]+" version;
+    in
+    if match != null then "${head match}-SNAPSHOT" else version;
+
   mkModule =
     id: artifacts:
     let
       coords = toCoordinates id;
-      modulePath = "${replaceStrings [ "." ] [ "/" ] coords.group}/${coords.module}/${coords.version}";
+      modulePath = "${replaceStrings [ "." ] [ "/" ] coords.group}/${coords.module}/${toVersionDir coords.version}";
       moduleOverrides = overrides.${id} or { };
       fetchArtifact = fetch moduleOverrides;
     in
