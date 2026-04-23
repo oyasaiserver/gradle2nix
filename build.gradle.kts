@@ -9,6 +9,11 @@ version = property("VERSION") ?: "unspecified"
 subprojects {
     group = rootProject.group
     version = rootProject.version
+
+    tasks.withType<Jar> {
+        isPreserveFileTimestamps = false
+        isReproducibleFileOrder = true
+    }
 }
 
 tasks {
